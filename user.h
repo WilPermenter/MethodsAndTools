@@ -15,7 +15,7 @@ private:
     int zip;
     int cartID;
 
-    bool isLoggedIn;
+    bool loggedIn;
 
 public:
     User();
@@ -28,6 +28,8 @@ public:
     string getPaymentInfo();
     int getZip();
     int getCartID();
+    
+    bool isLoggedIn(); 
 
     void setUsername(string username);
     void setPassword(string password);
