@@ -18,8 +18,7 @@ private:
     bool isLoggedIn;
 
 public:
-    User(string username, string password, string address, string state,
-        string city, int zip);
+    User();
 
     string getUsername();
     string getPassword();
@@ -39,6 +38,7 @@ public:
     void setZip(int zip);
     void setCartID(int cartID);   
     
+    void createNewUser(string uname, string pwd);
     void assignCart();
     void login(string pwd);
 
