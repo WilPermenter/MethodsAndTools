@@ -5,20 +5,18 @@ using std::string;
 
 class User {
 private:
-    string username;
-    string password;
-    string streetAddress;
-    string state;
-    string city;
-    string paymentInfo;
 
-    int zip;
-    int cartID;
+    string username, password, streetAddress,
+        state, city, paymentInfo;
 
-    bool loggedIn;
+    int zip, cartID;
+
+    bool loggedIn = false;
 
 public:
     User();
+    User(string username, string password, string streetAddress, string state, 
+        string city, string paymentInfo, int zip, int cartID);
 
     string getUsername();
     string getPassword();
@@ -28,8 +26,8 @@ public:
     string getPaymentInfo();
     int getZip();
     int getCartID();
-    
-    bool isLoggedIn(); 
+
+    bool isLoggedIn();
 
     void setUsername(string username);
     void setPassword(string password);
@@ -40,10 +38,8 @@ public:
     void setZip(int zip);
     void setCartID(int cartID);   
     
-    void createNewUser(string uname, string pwd);
-    void assignCart();
-    void login(string pwd);
+    bool login(string pwd);
 
-    void deleteUser();
+    ~User();
 
 };
