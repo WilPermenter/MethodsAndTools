@@ -3,30 +3,41 @@
 
 using std::cin;
 using std::cout;
+using std::getline;
 
 int main() {
     
-    int userChoice;
-    bool loopVar;
+    string userChoice;
+    bool loopVar = true;
 
     while (loopVar) {
         cout << "Welcome!\n";
         cout << "Login or create new account:\n";
         cout << "1. Login.\n";
-        cout << "2. Create new account:\n";
+        cout << "2. Create new account.\n";
+        cout << "3. Exit program.\n";
 
-        cin >> userChoice;
+        getline(cin, userChoice);
 
-        switch(userChoice) {
-            case 1:
-                // add code for login here
-                loopVar = false;
-            case 2:
-                // add code for creating a new user here
-                loopVar = false;
-            default:
-                cout << "Please select a valid choice (1 or 2).\n";
+        if (userChoice == "1") {
+            // code for login
+            cout << "Welcome!\n";
+            loopVar = false;
         }
+        else if (userChoice == "2") {
+            // code for new account 
+            cout << "Welcome!\n";
+            loopVar = false;
+        }
+        else if (userChoice == "3") {
+            cout << "Goodbye!\n";
+            return 0;
+        }
+        else {
+            // invalid choice 
+            cout << "Error: Invalid selection.\n";
+        }
+
     }
 
 
