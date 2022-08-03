@@ -41,3 +41,5 @@ void Item::setQuantity(int quantity) {
     this->quantity = quantity;
 }
 
+void Item::editStock(int itemID, int quantity) {
+    
