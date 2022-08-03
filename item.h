@@ -34,7 +34,7 @@ class Item {
         void setItemID();
         void setQuantity();
 
-        void editStock;
+        void editStock(int itemID, int quantity);
     
         ~Item();
         
