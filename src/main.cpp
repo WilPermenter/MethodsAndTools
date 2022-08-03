@@ -11,6 +11,8 @@
 #include <vector>   // for vector
 #include <memory>  // for allocator, __shared_ptr_access
 
+#include "user.h" // for user class
+
 #include "ftxui/component/component.hpp"  // for Checkbox, Renderer, Horizontal, Vertical, Input, Menu, Radiobox, ResizableSplitLeft, Tab
 #include "ftxui/component/component_base.hpp"     // for ComponentBase
 #include "ftxui/component/component_options.hpp"  // for MenuOption, InputOption
