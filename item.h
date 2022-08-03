@@ -17,6 +17,7 @@ class Item {
 
     public:
         Item();
+        Item(string genre, string name, float price, int itemID, int quantity);
 
         string getGenre;
         string getName;
@@ -34,5 +35,7 @@ class Item {
         void setQuantity();
 
         void editStock;
+    
+        ~Item();
         
 };
