@@ -40,6 +40,4 @@ public:
     
     bool login(string pwd);
 
-    ~User();
-
 };
