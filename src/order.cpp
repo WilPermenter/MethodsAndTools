@@ -36,10 +36,10 @@ void Order::setTotalPrice(float totalPrice) {
     this->totalPrice = totalPrice;
 }
 
-void Item::push(int newEntry) {
+void Order::push(Item newEntry) {
     items.push(newEntry);
 }
     
-void Item::pop(int index) {
+void Order::pop(int index) {
     items.pop(index);
 }
