@@ -47,4 +47,10 @@ void Item::editStock(int itemID, int quantity) {
     return;
 }
 
+void Item::push(int newEntry) {
+    items.push(newEntry);
+}
     
+void Item::pop(int index) {
+    items.pop(index);
+}    
