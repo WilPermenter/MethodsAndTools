@@ -4,15 +4,14 @@
 class Cart {
 
     private:
-        std::vector<int> itemID;
+        vector<int> items;
 
         int cartID;
 
     public:
         Cart();
-        Cart(cartID, //vector stuff);
-
-        //Vector set/get needed
+        Cart(cartID, items);
+     
         int getCartID();
 
         void setCartID(int cartID);
