@@ -22,4 +22,3 @@ class Cart {
     
         void pop(int index);
 };
-
