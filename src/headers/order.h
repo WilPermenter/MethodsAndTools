@@ -30,11 +30,7 @@ class Order {
         void setCartID(int cartID);
         void setTotalPrice(float totalPrice);
     
-        void Item::push(int newEntry) {
-            items.push(newEntry);
-        }
+        void Item::push(int newEntry);
     
-        void Item::pop(int newEntry) {
-            items.pop(newEntry);
-        }
+        void Item::pop(int index);
 };
