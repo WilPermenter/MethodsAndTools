@@ -36,10 +36,6 @@ class Item {
 
         void editStock(int itemID, int quantity);
     
-        void Item::push(int newEntry);
-    
-        void Item::pop(int index);
-    
         ~Item();
         
 };
