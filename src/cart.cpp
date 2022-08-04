@@ -19,10 +19,10 @@ int Cart::getCartID() { return cartID; }
 void Cart::setCartId(int cartID) {
     this->cartID = cartID;
 }
-void Item::push(int newEntry) {
+void Cart::push(Item newEntry) {
     items.push(newEntry);
 }
     
-void Item::pop(int index) {
+void Cart::pop(int index) {
     items.pop(index);
 } 
