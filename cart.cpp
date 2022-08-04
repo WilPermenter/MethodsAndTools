@@ -3,7 +3,7 @@
 
 Cart::Cart() {
 
-    std::vector<int> itemID;
+    items(-1);
 
     cartID = -1;
 }
