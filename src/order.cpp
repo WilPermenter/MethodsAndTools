@@ -1,14 +1,14 @@
 #include "headers/orders.h"
 
 Order::Order() {
-    std::vector<int> itemID;
+    items(-1);
 
     orderID = -1;
     userID = -1;
     cartID = -1;
     totalPrice = -1.00;
 }
-Order::Order(//std::vector<Item> items (check vector work), int orderID, int userID, int cartID, float totalPrice) {
+Order::Order(std::vector<Item> items (check vector work), int orderID, int userID, int cartID, float totalPrice) {
     //TO DO: Initialize item vector
     
     this->orderID = orderID;
@@ -17,7 +17,6 @@ Order::Order(//std::vector<Item> items (check vector work), int orderID, int use
     this->totalPrice = totalPrice;
     
 }
-//TO DO: set/get vector
 
 int Order::getOrderID() { return orderID; }
 int Order::getUserID() { return userID; }
