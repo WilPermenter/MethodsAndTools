@@ -17,5 +17,8 @@ class Cart {
 
         void setCartID(int cartID);
         
+        void Item::push(int newEntry);
+    
+        void Item::pop(int index);
 };
 
