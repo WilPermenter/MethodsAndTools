@@ -1,10 +1,12 @@
 #pragma once
 #include <vector>
 
+#include "item.h"
+
 class Cart {
 
     private:
-        vector<int> items;
+        vector<Item> items;
 
         int cartID;
 
@@ -16,8 +18,8 @@ class Cart {
 
         void setCartID(int cartID);
         
-        void Item::push(int newEntry);
+        void push(Item newEntry);
     
-        void Item::pop(int index);
+        void pop(int index);
 };
 
