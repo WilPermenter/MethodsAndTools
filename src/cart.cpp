@@ -26,3 +26,6 @@ void Cart::push(Item newEntry) {
 void Cart::pop(int index) {
     items.pop(index);
 } 
+           
+           
+           
