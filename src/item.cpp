@@ -45,12 +45,4 @@ void Item::setQuantity(int quantity) {
 void Item::editStock(int itemID, int quantity) {
     //To Be Implimented
     return;
-}
-
-void Item::push(int newEntry) {
-    items.push(newEntry);
-}
-    
-void Item::pop(int index) {
-    items.pop(index);
-}    
+}   
