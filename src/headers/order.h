@@ -8,7 +8,7 @@
 class Order {
 
     private: 
-        std::vector<Item> items;
+        std::vector<Item> item;
 
         int orderID;
         int userID;
@@ -18,7 +18,7 @@ class Order {
 
     public:
         Order();
-        Order(//std::vector<Item> items (check vector work), int userID, int cartID, float totalPrice);
+        Order(std::vector<Item> items (check vector work), int userID, int cartID, float totalPrice);
     
         int getOrderID();
         int getUserID();
