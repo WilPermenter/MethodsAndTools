@@ -13,10 +13,16 @@ Cart::Cart(int cartID, //std::vector<Item> items (check vector work)) {
     this->cartID = cartID;
 }
 
-//TO DO: set/get vector
 
 int Cart::getCartID() { return cartID; }
 
 void Cart::setCartId(int cartID) {
     this->cartID = cartID;
 }
+void Item::push(int newEntry) {
+    items.push(newEntry);
+}
+    
+void Item::pop(int index) {
+    items.pop(index);
+} 
