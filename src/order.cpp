@@ -1,7 +1,7 @@
 #include "headers/orders.h"
 
 Order::Order() {
-    //TO DO: Initialize item vector
+    std::vector<int> itemID;
 
     orderID = -1;
     userID = -1;
