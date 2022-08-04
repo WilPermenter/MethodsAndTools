@@ -8,7 +8,7 @@
 class Order {
 
     private: 
-        std::vector<Item> item;
+        std::vector<Item> items;
 
         int orderID;
         int userID;
@@ -18,7 +18,7 @@ class Order {
 
     public:
         Order();
-        Order(std::vector<Item> items (check vector work), int userID, int cartID, float totalPrice);
+        Order(std::vector<Item> items, int userID, int cartID, float totalPrice);
     
         int getOrderID();
         int getUserID();
@@ -29,4 +29,12 @@ class Order {
         void setUserID(int userID);
         void setCartID(int cartID);
         void setTotalPrice(float totalPrice);
+    
+        void Item::push(int newEntry) {
+            items.push(newEntry);
+        }
+    
+        void Item::pop(int newEntry) {
+            items.pop(newEntry);
+        }
 };
