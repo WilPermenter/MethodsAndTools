@@ -4,7 +4,7 @@
 class Cart {
 
     private:
-        std::vector<item> items;
+        std::vector<int> itemID;
 
         int cartID;
 
