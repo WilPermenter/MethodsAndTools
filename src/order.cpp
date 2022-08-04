@@ -36,3 +36,11 @@ void Order::setCartID(int cartID) {
 void Order::setTotalPrice(float totalPrice) {
     this->totalPrice = totalPrice;
 }
+
+void Item::push(int newEntry) {
+    items.push(newEntry);
+}
+    
+void Item::pop(int index) {
+    items.pop(index);
+}
