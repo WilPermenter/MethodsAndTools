@@ -37,7 +37,7 @@ class Order:
             
         return highestID
 
-    def lookUpOrder(orderID):
+    def lookUpOrderByID(orderID):
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
@@ -49,5 +49,21 @@ class Order:
         except:
             return Order()
         return Order(temp[0],temp[1])
+
+    def lookUpOrderByUser(userID):
+        ordList = []
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("SELECT * FROM orders WHERE user_ID = ?",(userID))
+            temp = c.fetchall()
+            conn.commit()
+            conn.close()
+
+            for order in temp:
+                ordList.append(Order(order[0],order[1]))
+        except:
+            return ordList
+        return ordList
 
     

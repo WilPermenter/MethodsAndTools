@@ -34,7 +34,6 @@ class Cart:
             return False
         return True
 
-    #TODO: DO
     def checkout(self,userID,userCart):
         temp = Cart(Order.getNextID(),self.items,userID,userCart,self.cartTotal())
         newOrder = Order()
