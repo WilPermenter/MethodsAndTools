@@ -1,33 +1,27 @@
-import sqlite3
-import user
+from os.path import exists
 
-def createDatabase():
-    conn = sqlite3.connect('BookStore.db')
-    c = conn.cursor()
+from user import *
+from item import *
+from orders import *
+from  cart import *
+from sqliteSetup import *
 
-    #Create User Table
-    c.execute("""CREATE TABLE users (
-    username text,
-    password text,
-    address text,
-    city text,
-    state text,
-    zipCode integer,
-    payment text,
-    cart_Id intiger,
-    is_logged_in intiger
-)
-""")
-    conn.commit()
-    conn.close()
-
-
+DATABASE_PATH = "BookStore.db"
 
 
 def main(): 
     print("Welcome!\n")
 
-    createDatabase()
+    #Database stuffs
+    if(not exists(DATABASE_PATH)):
+        if(createDatabase(DATABASE_PATH)):
+            print("Data Base Created!")
+        else:
+            print("Data Base Creation Error!")
+            return 0
+    else:
+        print("Data Base Found!")
+        
     
     loginloop = True
 
@@ -76,6 +70,8 @@ def main():
             return
         else:
             print("Invalid choice.\n")
+        
+        
 
 if __name__ == "__main__":
     main()

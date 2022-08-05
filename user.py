@@ -1,3 +1,4 @@
+from ast import Delete
 import sqlite3
 
 
@@ -12,7 +13,6 @@ class user:
         self.payment = payment
         self.cart_Id = cart_Id
     
-    @property
     def registerUser(self):
         try:
             conn =  sqlite3.connect('BookStore.db')
@@ -25,7 +25,6 @@ class user:
             
         return True
 
-    @property
     def assignCart(self):
         try:
             conn =  sqlite3.connect('BookStore.db')
@@ -45,7 +44,6 @@ class user:
             
         return True
 
-    @property
     def login(self):
         try:
             conn =  sqlite3.connect('BookStore.db')
@@ -63,7 +61,6 @@ class user:
         else:    
             return user()
 
-    @property
     def deleteUser(self):
         try:
             conn =  sqlite3.connect('BookStore.db')
@@ -74,4 +71,11 @@ class user:
         except:
             return False
             
+        return True
+
+    def updateUser(self):
+        if(self.deleteUser()):
+            self.registerUser()
+        else:
+            return False
         return True
