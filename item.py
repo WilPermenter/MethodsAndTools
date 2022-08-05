@@ -35,5 +35,3 @@ class Item:
 
     def set_genre(self, x):
         self.genre = x
-
-    def editStock():
