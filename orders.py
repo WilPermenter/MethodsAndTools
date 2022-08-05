@@ -41,7 +41,7 @@ class Order:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT * FROM orders WHERE order_ID = ?",(orderID))
+            c.execute("SELECT * FROM orders WHERE order_ID = ?",(orderID,))
             temp = c.fetchone()
 
             conn.commit()
@@ -55,7 +55,7 @@ class Order:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT * FROM orders WHERE user_ID = ?",(userID))
+            c.execute("SELECT * FROM orders WHERE user_ID = ?",(userID,))
             temp = c.fetchall()
             conn.commit()
             conn.close()
