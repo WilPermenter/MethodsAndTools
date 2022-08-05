@@ -42,7 +42,7 @@ def login():
             
 
 
-            newuser = user(username, password, address, city, state, zip, payment, -1, True)
+            newuser = user(str(username), str(password), str(address), str(city), str(state), int(zip), str(payment), -1, True)
 
             if newuser.registerUser():
                 print("\nAccount successfully registered!\n")
@@ -90,8 +90,14 @@ def shopping(activeCart, activeUser):
 
 def storefront(activeUser):
     loopy = True
-    activeCart = Cart.getCart(activeUser.cart_Id)
-    #activeCart.createCart()
+    if activeUser.cart_Id == -1:
+        activeUser.cart_Id == Cart.getNextID
+        activeCart = Cart()
+        activeCart.cartID = Cart.getNextID()
+        activeCart.createCart()
+    else:
+        activeCart = Cart.getCart(activeUser.cart_Id)
+    
 
     while loopy:
         choice = input("\n(1) Check cart\n(2) User Info\n(3) Shop!\n(4) Edit Cart\n(5) Exit program\n")

@@ -12,16 +12,17 @@ class user:
         self.zip_code = zip_code
         self.payment = payment
         self.cart_Id = cart_Id
+        self.isLoggedIn = isLoggedIn
     
     def registerUser(self):
-        try:
-            conn =  sqlite3.connect('BookStore.db')
-            c = conn.cursor()
-            c.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)",(self.username,self.password,self.address,self.city,self.state,self.zip_code,self.payment,self.cart_Id))
-            conn.commit()
-            conn.close()
-        except:
-            return False
+        #try:
+        conn =  sqlite3.connect('BookStore.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO users VALUES (?,?,?,?,?,?,?,?,?)",(self.username,self.password,self.address,self.city,self.state,self.zip_code,self.payment,self.cart_Id,self.isLoggedIn))
+        conn.commit()
+        conn.close()
+        #except:
+            #return False
             
         return True
 

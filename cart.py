@@ -1,9 +1,10 @@
 import sqlite3
+import random
 from orders import *
 from item import *
 
 class Cart:
-    def __init__(self, cartID = -1, items = ""):
+    def __init__(self, cartID = -1, items = ("",)):
         self.cartID = cartID
         self.items = items
 
@@ -64,14 +65,14 @@ class Cart:
             return False
 
     def createCart(self):
-        #try:
-        conn =  sqlite3.connect('BookStore.db')
-        c = conn.cursor()
-        c.execute("INSERT INTO carts VALUES (?,?)",(self.cartID,self.items[0]))
-        conn.commit()
-        conn.close()
-        #except:
-            #return False
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("INSERT INTO carts VALUES (?,?)",(self.cartID,self.items[0]))
+            conn.commit()
+            conn.close()
+        except:
+            return False
         return True
 
     def deleteCart(self):
@@ -127,6 +128,6 @@ class Cart:
                 if( id > highestID):
                     highestID = id
         except:
-            return -1
+            return random.randint(10,100)
             
         return highestID
