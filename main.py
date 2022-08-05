@@ -6,8 +6,45 @@ from orders import *
 from  cart import *
 from sqliteSetup import *
 
-#NOTE: This value is hardcoded in other files left variable for testing
 DATABASE_PATH = "BookStore.db"
+
+def createUser():
+    print("Creating new account...\n")
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    address = input("Enter address: ")
+    city = input("Enter city: ")
+    state = input("Enter state: ")
+    zip = input("Enter ZIP code: ")
+    payment = input("Enter payment method: ")
+
+    newuser = user(username, password, address, city, state, zip, payment, -1, True)
+
+    if newuser.registerUser():
+        print("\nAccount successfully registered!\n")
+        newuser.assignCart()
+        return True
+    else:
+        print("\nFailed to register account.\n")
+
+def login():
+    print("Attempting to log in...\n")
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    address = "N/A"
+    city = "N/A"
+    state = "N/A"
+    zip = -1
+    payment = "N/A"
+
+    existinguser = user(username, password, address, city, state, zip, payment, -1, True)
+
+    if existinguser.login():
+        print("\nLogin successful!\n")
+        return True
+    else: 
+        print("\nLogin failed.\n")  
+        return False  
 
 
 def main(): 
@@ -22,7 +59,6 @@ def main():
             return 0
     else:
         print("Data Base Found!")
-        
     
     loginloop = True
 
@@ -30,11 +66,15 @@ def main():
         choice = input("(1) login\n(2) new account\n(3) exit\n")
 
         if choice == "1":
-            print(" ")
-            loginloop = False
+            if login():
+                loginloop = False
+            else: 
+                loginloop = True
         elif choice == "2":
-            print(" ")
-            loginloop = False
+            if createUser():
+                loginloop = False
+            else:
+                loginloop = True
         elif choice == "3":
             print("Goodbye")
             return
@@ -71,8 +111,6 @@ def main():
             return
         else:
             print("Invalid choice.\n")
-        
-        
 
 if __name__ == "__main__":
     main()
