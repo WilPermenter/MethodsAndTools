@@ -1,6 +1,7 @@
 #include <string.h>
 #include <sqlite3.h>
-#include "user.h"
+#include "headers/user.h"
+#include "headers/item.h"
 
 using namespace std;
 
@@ -14,11 +15,7 @@ public:
     DBInteract();
 
     void addUser(User& user);
-
-    // called when the database is constructed the first time
-    // almost certainly not the best way to do this
-    void constructDB();
-  
-    bool isEmpty();
+    
+    Item getItem(int ID);
 
 };
