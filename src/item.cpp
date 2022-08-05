@@ -1,6 +1,5 @@
 #include "headers/item.h"
 
-
 Item::Item() {
     genre = "N/A";
     name = "N/A";
@@ -42,7 +41,12 @@ void Item::setQuantity(int quantity) {
     this->quantity = quantity;
 }
 
-void Item::editStock(int itemID, int quantity) {
-    //To Be Implimented
-    return;
-}   
+Item& Item::operator=(const Item& item) {
+    name = item.name;
+    itemID = item.itemID;
+    genre = item.genre;
+    price = item.price;
+    quantity = item.quantity;
+
+    return *this;
+}
