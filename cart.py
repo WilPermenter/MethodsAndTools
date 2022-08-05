@@ -37,7 +37,17 @@ class Cart:
     #TODO: DO
     def checkout(self,userID,userCart):
         temp = Cart(Order.getNextID(),self.items,userID,userCart,self.cartTotal())
-        return False
+        newOrder = Order()
+        newOrder.orderID = Order.getNextOrderID()
+        newOrder.items = temp.items
+        newOrder.userID = userID
+        newOrder.cartID = temp.cartID
+        newOrder.totalPrice = temp.cartTotal
+
+        if(newOrder.createOrder()):
+            return True
+        else:
+            return False
 
     def createCart(self):
         try:
