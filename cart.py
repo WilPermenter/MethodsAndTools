@@ -34,6 +34,7 @@ class Cart:
             return False
         return True
 
+    #TODO: DO
     def checkout(self,userID,userCart):
         temp = Cart(Order.getNextID(),self.items,userID,userCart,self.cartTotal())
         newOrder = Order()
@@ -63,7 +64,7 @@ class Cart:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("DELETE FROM carts WHERE ?",(self.cartID))
+            c.execute("DELETE FROM carts WHERE cartID = ?",(self.cartID,))
             conn.commit()
             conn.close()
         except:
@@ -75,11 +76,13 @@ class Cart:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT items FROM carts WHERE ?",(cartId))
+            c.execute("SELECT items FROM carts WHERE cartID = ?",(cartId,))
             items = c.fetchone
             conn.close()
         except:
-            return Cart()
+            temp = Cart()
+            temp.cartId = cartId
+            return temp
         return Cart(cartId,items)
 
     def getItemName(self,Index):
