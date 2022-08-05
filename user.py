@@ -3,7 +3,7 @@ import sqlite3
 
 
 class user:
-    def __init__(self, username, password, address, city, state, zip_code, payment, cart_Id, isLoggedIn):
+    def __init__(self, username, password = "", address = "", city = "", state = "", zip_code = -1, payment = "", cart_Id = -1, isLoggedIn = False):
         self.username = username
         self.password = password
         self.address = address
