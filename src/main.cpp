@@ -37,7 +37,7 @@ User * loginScreen(){
         case 2:
             std::cout << "\nPlease Input Your Username: ";
             std:: cin >> userName;
-            if(/*check for dupelcate username*/ false){
+            if(/*check for duplicate username*/ false){
                 std::cout <<"\n Duplacate User Name";
                 throw(std::runtime_error("DuplacateUser"));
                 break;
@@ -69,6 +69,42 @@ User * loginScreen(){
 
 
 void editUser(){
+             std::cout << "Please choose which item you would like to edit" << endl;
+             std::cout << "1: Username" << endl;
+             std::cout << "2: Password" << endl;
+             std::cout << "3: Address" << endl;
+             std::cout << "4: Payment info" << endl;
+             
+             std::cin >> editAccount;
+    
+    switch(editAccount){
+            
+         case 1:
+             
+         case 2:
+             
+         case 3:
+            
+             switch(editAddress) {
+                std::cout << "Please choose which item you would like to edit" << endl;
+                std::cout << "1: Street address" << endl;
+                std::cout << "2: State" << endl;
+                std::cout << "3: City" << endl;
+                std::cout << "4: ZIP code" << endl;                 
+                
+                std::cin >> editAddress;
+                     
+                 case 1:
+                     
+                 case 2:
+                     
+                 case 3:
+                 
+                 case 4:
+             }
+         case 4:
+             
+     }    
     return;
 };
 
