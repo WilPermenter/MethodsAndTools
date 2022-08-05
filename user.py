@@ -27,7 +27,23 @@ class user:
 
     @property
     def assignCart(self):
-        return 0
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("SELECT cart_ID FROM users")
+            ids = c.fetchall()
+            conn.commit()
+            conn.close()
+
+            highestID = 0
+            for id in ids:
+                if( id > highestID):
+                    highestID = id
+            self.cart_Id = highestID + 1
+        except:
+            return False
+            
+        return True
 
     @property
     def login(self):
@@ -49,4 +65,13 @@ class user:
 
     @property
     def deleteUser(self):
-        return 0
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("DELETE FROM users WHERE ?",(self.username))
+            conn.commit()
+            conn.close()
+        except:
+            return False
+            
+        return True

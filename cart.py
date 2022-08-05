@@ -5,9 +5,11 @@ class cart:
 
 
     def addToCart():
+        return False
 
 
     def removeFromCart():
-
+        return False
 
     def checkout():
+        return False

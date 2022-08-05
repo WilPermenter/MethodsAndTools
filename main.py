@@ -19,9 +19,6 @@ def createDatabase():
 )
 """)
     conn.commit()
-
-
-
     conn.close()
 
 
@@ -80,4 +77,5 @@ def main():
         else:
             print("Invalid choice.\n")
 
-main()
+if __name__ == "__main__":
+    main()
