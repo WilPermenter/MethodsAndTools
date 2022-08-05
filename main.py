@@ -1,6 +1,36 @@
+import sqlite3
+import user
+
+def createDatabase():
+    conn = sqlite3.connect('BookStore.db')
+    c = conn.cursor()
+
+    #Create User Table
+    c.execute("""CREATE TABLE users (
+    username text,
+    password text,
+    address text,
+    city text,
+    state text,
+    zipCode integer,
+    payment text,
+    cart_Id intiger,
+    is_logged_in intiger
+)
+""")
+    conn.commit()
+
+
+
+    conn.close()
+
+
+
 
 def main(): 
     print("Welcome!\n")
+
+    createDatabase()
     
     loginloop = True
 
