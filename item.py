@@ -8,6 +8,17 @@ class Item:
         self.itemName = "N/A"
         self.genre = "N/A"
 
+    def getItem(itemId):
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("SELECT * FROM items WHERE ?",(itemId))
+            temp = c.fetchone
+            conn.close()
+        except:
+            return Item()
+        return Item(itemId,temp[1],temp[2],temp[3],temp[4])
+
     def createItem(self):
         try:
             conn =  sqlite3.connect('BookStore.db')

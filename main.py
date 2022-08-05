@@ -6,6 +6,7 @@ from orders import *
 from  cart import *
 from sqliteSetup import *
 
+#NOTE: This value is hardcoded in other files left variable for testing
 DATABASE_PATH = "BookStore.db"
 
 

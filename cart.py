@@ -1,9 +1,21 @@
 import sqlite3
+from orders import *
+from item import *
 
-class cart:
+class Cart:
     def __init__(self):
         self.cartID = -1
         self.items = ""
+
+    def cartTotal(self):
+        arr = self.items.split(',')
+        arr.pop[-1]
+
+        total = 0
+        for item in arr:
+            total += Item.getItem(item).price
+
+        return total
 
 
     def addToCart(self,itemID):
@@ -23,7 +35,8 @@ class cart:
         return True
 
     #TODO: DO
-    def checkout():
+    def checkout(self,userID,userCart):
+        temp = Cart(Order.getNextID(),self.items,userID,userCart,self.cartTotal())
         return False
 
     def createCart(self):
@@ -53,12 +66,12 @@ class cart:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("DELETE items FROM carts WHERE ?",(cartId))
+            c.execute("SELECT items FROM carts WHERE ?",(cartId))
             items = c.fetchone
             conn.close()
         except:
-            return cart(-1,"")
-        return cart(cartId,items)
+            return Cart()
+        return Cart(cartId,items)
 
     def getItemName(self,Index):
         try:
@@ -74,7 +87,7 @@ class cart:
             return False
         return True
     
-    def getNextID(self):
+    def getNextID():
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
