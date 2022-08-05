@@ -1,19 +1,34 @@
 import sqlite3
 
 class Item:
-    def __init__(self):
-        self.itemID = 0
-        self.quantity = 0
-        self.price = 0
-        self.itemName = "N/A"
-        self.genre = "N/A"
+    def __init__(self, itemID = 0, quantity = 0, price = 0, itemName = "", genre = ""):
+        self.itemID = itemID
+        self.quantity = quantity
+        self.price = price
+        self.itemName = itemName
+        self.genre = genre
+
+    def getAllItems():
+        itemList = []
+        try:
+            conn =  sqlite3.connect('BookStore.db')
+            c = conn.cursor()
+            c.execute("SELECT * FROM items")
+            temp = c.fetchall()
+            conn.close()
+            
+            for i in temp:
+                itemList.append(Item(i[0],i[1],i[2],i[3],i[4]))
+        except:
+            return Item()
+        return itemList
 
     def getItem(itemId):
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT * FROM items WHERE itemId = ?",(itemId,))
-            temp = c.fetchone
+            c.execute("SELECT * FROM items WHERE item_ID = ? ",(itemId,))
+            temp = c.fetchone()
             conn.close()
         except:
             return Item()

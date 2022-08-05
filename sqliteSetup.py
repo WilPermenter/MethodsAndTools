@@ -43,7 +43,7 @@ def createDatabase(path):
         c.execute("""CREATE TABLE orders (
         order_ID integer,
         items text,
-        user_ID integer,
+        user text,
         cart_ID integer,
         total integer
 )

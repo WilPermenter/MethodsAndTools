@@ -39,6 +39,8 @@ def login():
             state = input("Enter state: ")
             zip = input("Enter ZIP code: ")
             payment = input("Enter payment method: ")
+            
+
 
             newuser = user(username, password, address, city, state, zip, payment, -1, True)
 
@@ -62,46 +64,68 @@ def shopping(activeCart, activeUser):
 
     while shoploop:
         choice = input("\n(1) View all items\n(2) Add item to cart\n(3) Checkout\n(4) Go back\n")
-
+        itemsForSale = Item.getAllItems()
         if choice == "1":
             print("Items avaliable:\n")
+            for i in itemsForSale:
+                print(str(itemsForSale.index(i) + 1)  +") " + i.itemName + "\n")
         elif choice == "2":
-            input("Please enter the ID of the item you want to add:\n")
+            addToCart = input("Please enter the item you want to add:\n")
+            print(str(itemsForSale[int(addToCart)].itemID))
+            activeCart.addToCart(str(itemsForSale[int(addToCart)].itemID))
+            activeCart.updateCart()
         elif choice == "3":
-            if activeCart.checkout(activeUser.username, activeCart):
+            if activeCart.checkout(activeUser.username):
                 print("Checkout successful!")
             else: 
                 print("Checkout failed...")
+        elif choice == "4":
+            shoploop = False
+            break
         else:
             print("Invalid choice.\n")
+
+    return activeCart
 
 
 def storefront(activeUser):
     loopy = True
-    activeCart = Cart()
-    activeCart.cartID = activeUser.cart_Id
-    activeCart.createCart()
+    activeCart = Cart.getCart(activeUser.cart_Id)
+    #activeCart.createCart()
 
     while loopy:
-        choice = input("\n(1) Check cart\n(2) User Info\n(3) Shop!\n(4) Exit program\n")
+        choice = input("\n(1) Check cart\n(2) User Info\n(3) Shop!\n(4) Edit Cart\n(5) Exit program\n")
 
         if choice == "1":
-            activeCart = Cart.getCart(activeCart.cartID)
-            print(activeCart.items)
+            #activeCart = Cart.getCart(activeCart.cartID)
+            print(activeCart.cartNameList())
 
         elif choice == "2":
             print("Accessing user info...")
-            print("Username: " + activeUser.username)
-            print("Address: " + activeUser.address)
-            print("City: " + activeUser.city)
-            print("State: " + activeUser.state)
-            print("ZIP: " + activeUser.zip_code)
-            print("Payment method: " + activeUser.payment)
+            print("Username: " + str(activeUser.username))
+            print("Address: " + str(activeUser.address))
+            print("City: " + str(activeUser.city))
+            print("State: " + str(activeUser.state))
+            print("ZIP: " + str(activeUser.zip_code))
+            print("Payment method: " + str(activeUser.payment))
+            print("\n")
+            print("Order History: ")
+            for order in Order.lookUpOrderByUser(activeUser.username):
+                print("Order ID: " + str(order.orderID) + "Total Price" +  order.totalPrice)
+
 
         elif choice == "3":
-            shopping(activeCart,activeUser)
+            activeCart = shopping(activeCart,activeUser)
 
         elif choice == "4":
+            print(activeCart.cartNameList())
+            itemToRemove = input("Select Item To Remove: ")
+            if(activeCart.removeFromCart(itemToRemove) and activeCart.updateCart()):
+                print("Item Remove Sucesfully")
+            else:
+                print("Erro Removing Item")
+
+        elif choice == "5":
             print("Goodbye")
             return
         else:

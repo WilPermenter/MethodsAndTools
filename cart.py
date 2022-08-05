@@ -3,13 +3,23 @@ from orders import *
 from item import *
 
 class Cart:
-    def __init__(self):
-        self.cartID = -1
-        self.items = ""
+    def __init__(self, cartID = -1, items = ""):
+        self.cartID = cartID
+        self.items = items
+
+    def cartNameList(self):
+        arr = self.items[0].split(',')
+        arr.pop(len(arr) - 1 )
+
+        outstr = ""
+        for item in arr:
+            outstr += (str(arr.index(item) + 1)  +") " + Item.getItem(item).itemName + "\n")
+
+        return outstr
 
     def cartTotal(self):
-        arr = self.items.split(',')
-        arr.pop[-1]
+        arr = self.items[0].split(',')
+        arr.pop(len(arr) - 1)
 
         total = 0
         for item in arr:
@@ -19,30 +29,34 @@ class Cart:
 
 
     def addToCart(self,itemID):
+        #try:
+        self.items = (self.items[0] + str(itemID) + ",",)
+        #except:
+            #return False
+        return True
+
+
+    def removeFromCart(self,selected):
         try:
-            self.items = self.items + ("{},",itemID)
+            arr = self.items[0].split(',')
+            arr.pop(len(arr) - 1 )
+            arr.pop(int(selected) - 1)
+
+            temp = ""
+            for i in arr:
+                temp += (i + ",")
+            self.items = (temp,)
         except:
             return False
         return True
 
-
-    def removeFromCart(self,itemID):
-        try:
-            self.items = self.items.replace(("?,",{itemID}), "")
-            self.updateCart()
-        except:
-            return False
-        return True
-
-    #TODO: DO
-    def checkout(self,userID,userCart):
-        temp = Cart(Order.getNextID(),self.items,userID,userCart,self.cartTotal())
+    def checkout(self,userID):
         newOrder = Order()
         newOrder.orderID = Order.getNextOrderID()
-        newOrder.items = temp.items
-        newOrder.userID = userID
-        newOrder.cartID = temp.cartID
-        newOrder.totalPrice = temp.cartTotal
+        newOrder.items = self.items
+        newOrder.user = userID
+        newOrder.cartID = self.cartID
+        newOrder.totalPrice = self.cartTotal()
 
         if(newOrder.createOrder()):
             return True
@@ -50,21 +64,21 @@ class Cart:
             return False
 
     def createCart(self):
-        try:
-            conn =  sqlite3.connect('BookStore.db')
-            c = conn.cursor()
-            c.execute("INSERT INTO carts VALUES (?,?)",(self.cartID,self.items))
-            conn.commit()
-            conn.close()
-        except:
-            return False
+        #try:
+        conn =  sqlite3.connect('BookStore.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO carts VALUES (?,?)",(self.cartID,self.items[0]))
+        conn.commit()
+        conn.close()
+        #except:
+            #return False
         return True
 
     def deleteCart(self):
         try:
-            conn =  sqlite3.connect('BookStore.db')
+            conn = sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("DELETE FROM carts WHERE cartID = ?",(self.cartID,))
+            c.execute("DELETE FROM carts WHERE cart_ID = ?",(self.cartID,))
             conn.commit()
             conn.close()
         except:
@@ -74,14 +88,14 @@ class Cart:
 
     def getCart(cartId):
         try:
-            conn =  sqlite3.connect('BookStore.db')
+            conn = sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT items FROM carts WHERE cartID = ?",(cartId,))
-            items = c.fetchone
+            c.execute("SELECT items FROM carts WHERE cart_ID = ?",(cartId,))
+            items = c.fetchone()
             conn.close()
         except:
             temp = Cart()
-            temp.cartId = cartId
+            temp.cartID = cartId
             return temp
         return Cart(cartId,items)
 
@@ -93,8 +107,8 @@ class Cart:
             return ""
     
     def updateCart(self):
-        if(self.deleteCart):
-            self.createCart
+        if(self.deleteCart()):
+            self.createCart()
         else:
             return False
         return True

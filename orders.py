@@ -3,20 +3,20 @@ import sqlite3
 class Order:
     def __init__(self):
         self.orderID = 0
-        self.items = "N/A"
-        self.userID = 0
+        self.items = ""
+        self.user = ""
         self.cartID = 0
         self.totalPrice = 0
 
     def createOrder(self):
-        try:
-            conn =  sqlite3.connect('BookStore.db')
-            c = conn.cursor()
-            c.execute("INSERT INTO orders VALUES (?,?,?,?,?)",(self.orderID,self.items,self.userID,self.cartID,self.totalPrice))
-            conn.commit()
-            conn.close()
-        except:
-            return False
+        #try:
+        conn =  sqlite3.connect('BookStore.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO orders VALUES (?,?,?,?,?)",(int(self.orderID),str(self.items),str(self.user),int(self.cartID),int(self.totalPrice)))
+        conn.commit()
+        conn.close()
+        #except:
+        #    return False
         return True
 
     def getNextOrderID():
