@@ -12,7 +12,7 @@ class Item:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("SELECT * FROM items WHERE ?",(itemId))
+            c.execute("SELECT * FROM items WHERE itemId = ?",(itemId,))
             temp = c.fetchone
             conn.close()
         except:
@@ -35,7 +35,7 @@ class Item:
         try:
             conn =  sqlite3.connect('BookStore.db')
             c = conn.cursor()
-            c.execute("DELETE FROM items WHERE ?",(self.itemID))
+            c.execute("DELETE FROM items WHERE itemID = ?",(self.itemID,))
             conn.commit()
             conn.close()
         except:
