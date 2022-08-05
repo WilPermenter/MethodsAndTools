@@ -1,4 +1,3 @@
-
 #pragma once
 #include <string>
 
@@ -34,8 +33,7 @@ class Item {
         void setItemID(int itemID);
         void setQuantity(int quantity);
 
-        void editStock(int itemID, int quantity);
-    
-        ~Item();
+        // assignment operator overload
+        Item& operator=(const Item& item);
         
 };
